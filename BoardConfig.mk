@@ -1,6 +1,8 @@
 #
 # Copyright 2017 The Android Open Source Project
 #
+# Copyright (C) 2019-2020 OrangeFox Recovery Project
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -22,6 +24,8 @@
 # bitrot and build breakages. Building a component unconditionally does
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
+
+LOCAL_PATH := device/xiaomi/tulip
 
 # Architecture
 TARGET_ARCH := arm64
@@ -60,7 +64,22 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
-TARGET_PREBUILT_KERNEL := device/xiaomi/tulip/prebuilt/Image.gz-dtb
+
+ifeq ($(FOX_BUILD_FULL_KERNEL_SOURCES),1)
+  TARGET_KERNEL_SOURCE := kernel/xiaomi/tulip
+  BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+  TARGET_KERNEL_CONFIG := tulip-fox-aosp-pie_defconfig
+else
+  TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image.gz-dtb
+# TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image-tulip-genom-miui.gz-dtb
+ifeq ($(FOX_USE_STOCK_KERNEL),1)
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image-stock.gz-dtb
+endif
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel
+endif
+
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm660
@@ -97,13 +116,13 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXTRA_LANGUAGES := true
+TW_DEFAULT_LANGUAGE := en
 TW_INCLUDE_NTFS_3G := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_MAX_BRIGHTNESS := 4095
+TW_DEFAULT_BRIGHTNESS := 1950
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_Y_OFFSET := 87
-TW_H_OFFSET := -87
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
@@ -115,6 +134,4 @@ TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
-
-# Official
-PB_OFFICIAL := true
+#
