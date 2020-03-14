@@ -16,9 +16,8 @@
 #
 FDEVICE="tulip"
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-        export PLATFORM_VERSION="10.0.0"
+        export PLATFORM_VERSION="16.1.0"
    	export TW_DEFAULT_LANGUAGE="en"
-	export OF_USE_LEGACY_CRYPTO="1"
         export OF_SCREEN_H="2340"
         export OF_STATUS_H="80"
         export OF_STATUS_INDENT_LEFT="48"
