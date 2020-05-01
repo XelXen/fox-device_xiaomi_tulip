@@ -71,7 +71,6 @@ ifeq ($(FOX_BUILD_FULL_KERNEL_SOURCES),1)
   TARGET_KERNEL_CONFIG := tulip-fox-aosp-pie_defconfig
 else
   TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image.gz-dtb
-# TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image-tulip-genom-miui.gz-dtb
 ifeq ($(FOX_USE_STOCK_KERNEL),1)
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image-stock.gz-dtb
 endif
@@ -107,7 +106,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 AB_OTA_UPDATER := false
-#LZMA_RAMDISK_TARGETS := recovery
 
 # TWRP specific build flags
 TARGET_OTA_ASSERT_DEVICE := tulip
