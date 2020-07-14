@@ -1,12 +1,7 @@
-# android_device_xiaomi_tulip
-For building TWRP for Xiaomi Redmi Note 6 Pro ONLY
+# Device tree for Xiaomi Redmi Note 6 Pro (codenamed _"tulip"_)
 
-To compile
-
-. build/envsetup.sh && lunch omni_whyred-eng && make -j8 recoveryimage
-
-The Xiaomi Redmi Note 6 Pro (codenamed _"tulip"_) is a mid-range smartphone from Xiaomi announced in September 2018.
-
+Kernel source: "https://github.com/ryan-andri/android_kernel_xiaomi_tulip.git"
+==================================
 ## Device specifications
 
 | Device                  | Xiaomi Redmi Note 6 Pro                                     |
@@ -28,4 +23,27 @@ The Xiaomi Redmi Note 6 Pro (codenamed _"tulip"_) is a mid-range smartphone from
 
 ## Device picture
 
-![Xiaomi Redmi Note 6 Pro](https://img.timesnownews.com/story/1544521578-Xiaomi_Redmi_Note_6_Pro_colours.jpg)
+![Xiaomi Redmi Note 6 Pro](https://img.timesnownews.com/story/1544521578-Xiaomi_Redmi_Note_6_Pro_colours.jpg "Redmi Note 6 Pro")
+
+### Copyright
+ ```
+  /*
+  *  Copyright (C) 2013-2020 The TWRP
+  *
+  *  Copyright (C) 2019-2020 The OrangeFox Recovery Project
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
+  ```
