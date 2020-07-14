@@ -68,7 +68,7 @@ BOARD_RAMDISK_OFFSET     := 0x01000000
 ifeq ($(FOX_BUILD_FULL_KERNEL_SOURCES),1)
   TARGET_KERNEL_SOURCE := kernel/xiaomi/tulip
   BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-  TARGET_KERNEL_CONFIG := tulip-fox-aosp-pie_defconfig
+  TARGET_KERNEL_CONFIG := tulip-fox_defconfig
 else
   TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image.gz-dtb
 ifeq ($(FOX_USE_STOCK_KERNEL),1)
