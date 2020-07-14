@@ -28,7 +28,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_USE_MAGISKBOOT=1
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 	export OF_REDUCE_DECRYPTION_TIMEOUT=1
-	export OF_OTA_RES_DECRYPT=1
 	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
@@ -40,9 +39,16 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_REPLACE_BUSYBOX_PS=1
 	export OF_USE_NEW_MAGISKBOOT=1
 
-	# ! keeping dm-verity is necessary, else MIUI incremental OTA will fail !
-	export OF_KEEP_DM_VERITY="1" 
-	export OF_DISABLE_FORCED_ENCRYPTION="1"  # enabled for beta R10.1_002
+	# ! keeping dm-verity is important, else you will be spammed by MIUI about your device
+	# export OF_KEEP_DM_VERITY="1" 
+
+        # -- add settings for R11 --
+        export FOX_R11=1
+        export FOX_ADVANCED_SECURITY=1
+        export OF_USE_TWRP_SAR_DETECT=1
+        export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+        export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
+        # -- end R11 settings --
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
@@ -52,7 +58,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
   	   export | grep "TARGET_" >> $FOX_BUILD_LOG_FILE
   	fi
 
-	add_lunch_combo omni_"$FDEVICE"-eng
-	add_lunch_combo omni_"$FDEVICE"-userdebug
+   	for var in eng userdebug; do
+       	    add_lunch_combo omni_"$FDEVICE"-$var
+   	done
 fi
 #
