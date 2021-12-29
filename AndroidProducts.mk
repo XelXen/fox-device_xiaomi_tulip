@@ -15,4 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_tulip.mk
+    $(LOCAL_DIR)/twrp_tulip.mk
+
+COMMON_LUNCH_CHOICES := \
+    twrp_tulip-eng

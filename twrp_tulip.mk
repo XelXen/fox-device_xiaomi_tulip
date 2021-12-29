@@ -17,14 +17,14 @@
 # Release name
 PRODUCT_RELEASE_NAME := tulip
 
-$(call inherit-product, build/target/product/embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := tulip
-PRODUCT_NAME := omni_tulip
+PRODUCT_NAME := twrp_tulip
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Xiaomi Redmi Note 6 Pro
 PRODUCT_MANUFACTURER := Xiaomi
